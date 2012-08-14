@@ -1,9 +1,12 @@
 /*
  *  jQuery selectBox - A cosmetic, styleable replacement for SELECT elements
+ *  with Afisha.Eda changes
  *
- *  Copyright 2012 Cory LaViska for A Beautiful Site, LLC.
+ * https://github.com/xkrt/jquery-selectBox.afisha.eda
  *
- *  https://github.com/claviska/jquery-selectBox
+ *  Original code by Cory LaViska for A Beautiful Site, LLC. (https://github.com/claviska/jquery-selectBox)
+ *
+ *  jQuery SelectBox with Afisha.Eda changes
  *
  *  Licensed under both the MIT license and the GNU GPLv2 (same as jQuery: http://jquery.org/license)
  *
@@ -81,7 +84,7 @@ if (jQuery)(function($) {
 						var label = $('<span class="selectBox-label" />'),
 							arrow = $('<span class="selectBox-arrow" />');
 						// Update label
-						label.attr('class', getLabelClass(select)).text(getLabelText(select));
+						label.attr('class', getLabelClass(select)).html(getLabelText(select));
 						options = getOptions(select, 'dropdown');
 						options.appendTo('BODY');
 						control.data('selectBox-options', options).addClass('selectBox-dropdown').append(label).append(arrow).bind('mousedown.selectBox', function(event) {
@@ -121,7 +124,7 @@ if (jQuery)(function($) {
 								// If the element is an option, add it to the list.
 								if ($(this).is('OPTION')) {
 									// Check for a value in the option found.
-									if ($(this).length > 0) {
+									if ($(this).html().length > 0) {
 										// Create an option form the found element.
 										generateOptions($(this), options);
 									} else {
@@ -616,7 +619,7 @@ if (jQuery)(function($) {
 						a = $('<a />');
 					li.addClass(self.attr('class'));
 					li.data(self.data());
-					a.attr('rel', self.val()).text(self.text());
+					a.attr('rel', self.val()).html(self.text().replace('&nbsp;', '&nbsp;'));
 					li.append(a);
 					if (self.attr('disabled')) li.addClass('selectBox-disabled');
 					if (self.attr('selected')) li.addClass('selectBox-selected');
