@@ -93,7 +93,7 @@ if (jQuery)(function($) {
 							} else {
 								event.stopPropagation();
 								// Webkit fix to prevent premature selection of options
-								options.data('selectBox-down-at-x', event.screenX).data('selectBox-down-at-y', event.screenY);
+								options.data('selectBox-down-at-x', event.pageX).data('selectBox-down-at-y', event.pageY);
 								showMenu(select);
 							}
 						}).bind('keydown.selectBox', function(event) {
@@ -164,12 +164,12 @@ if (jQuery)(function($) {
 						options = _getOptions(select, options);
 						options.data('selectBox-select', select).css('display', 'none').appendTo('BODY').find('A').bind('mousedown.selectBox', function(event) {
 							event.preventDefault(); // Prevent options from being "dragged"
-							if (event.screenX === options.data('selectBox-down-at-x') && event.screenY === options.data('selectBox-down-at-y')) {
+							if (event.pageX === options.data('selectBox-down-at-x') && event.pageY === options.data('selectBox-down-at-y')) {
 								options.removeData('selectBox-down-at-x').removeData('selectBox-down-at-y');
 								hideMenus();
 							}
 						}).bind('mouseup.selectBox', function(event) {
-							if (event.screenX === options.data('selectBox-down-at-x') && event.screenY === options.data('selectBox-down-at-y')) {
+							if (event.pageX === options.data('selectBox-down-at-x') && event.pageY === options.data('selectBox-down-at-y')) {
 								return;
 							} else {
 								options.removeData('selectBox-down-at-x').removeData('selectBox-down-at-y');
